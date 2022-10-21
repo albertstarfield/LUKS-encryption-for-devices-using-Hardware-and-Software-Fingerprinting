@@ -1,0 +1,40 @@
+#!/bin/bash
+echo "Under construction"
+exit
+
+
+
+
+# use reencrypt
+disabledLegacyCode(){
+echo "ALERT! This wil reset the keychain!"
+echo "AND REQUIRED A FORCED REBOOT"
+echo -n Disk Data Password : 
+if [ -z "${1}" ]; then
+read -s password
+else
+echo "External invocation detected!"
+export password="${1}"
+fi
+echo
+touch passwordhash.gpg keychain.gpg
+
+bash hwhash
+#=====================
+#[diskencryption]
+echo $password > passwordhash 
+gpg --batch --yes --passphrase "$(cat /tmp/hwhash)" -c passwordhash
+echo "Okay you should able to boot up and mount the drive now"
+rm passwordhash
+#=====================
+#[keychain]
+echo "keychainID=$(uuidgen)" > keychain
+gpg --batch --yes --passphrase "$(cat /tmp/hwhash)" -c keychain
+rm keychain
+#=====================
+
+echo "Migrating new configuration into the rw storage!"
+mount -o remount,rw /media/root-ro
+cp -ruav /encryptStorageTrustTool/* /media/root-ro/encryptStorageTrustTool
+mount -o remount,ro /media/root-ro
+}

@@ -1,0 +1,9 @@
+[Unit]
+Description=Hardware Hash daemon
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "cd /encryptStorageTrustTool ; bash /encryptStorageTrustTool/hwswhashd"
+
+[Install]
+WantedBy=multi-user.target
