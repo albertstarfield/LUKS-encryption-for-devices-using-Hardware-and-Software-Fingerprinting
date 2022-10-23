@@ -12,7 +12,7 @@ bootloaderIntegrityHash="$(echo $(sha512sum $(find /boot/efi -type f)) | sha512s
 osKernelIntegrityHash="$(echo $(sha512sum /boot/*initrd* ; sha512sum /boot/*vmlinuz* ) | sha512sum)"
 startupSystemDIntegrityHash="$(echo $(ls /etc/systemd/system | sha512sum) | sha512sum)"
 #legacy Code sample keyHash=$(echo $( echo $( lsusb | sha512sum ) ; echo $( lshw -c system | sha512sum ) ; echo $( lspci | sha512sum ); ls /encryptStorageTrustTool ; sha512sum /encryptStorageTrustTool/keyHash /encryptStorageTrustTool/renewdatahash /encryptStorageTrustTool/submitkey /encryptStorageTrustTool/lukstrusteddecrypthandler.sh ; echo $( dmidecode -t system | sha512sum ) ; echo $( ls /etc/systemd/system | sha512sum ) ; sha512sum /boot/*initrd* ; sha512sum /boot/*vmlinuz* ) | sha512sum )
-keyHash=$(echo "${hwHash}${userspaceBinaryHash}${authToolsIntegrityHash}${bootloaderIntegrityHash}${osKernelIntegrityHash}" | sha512sum)
+keyHash=$(echo "${hwHash}${userspaceBinaryHash}${authToolsIntegrityHash}${bootloaderIntegrityHash}${osKernelIntegrityHash}${startupSystemDIntegrityHash}" | sha512sum)
 fi
 
 clearkeyHash(){
