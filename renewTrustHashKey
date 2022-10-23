@@ -6,7 +6,6 @@ exit
 else
 echo $(bash /encryptStorageTrustTool/hwswhashd > /dev/null 2>&1 ) &
 fi
-reset
 echo "Please prepare your backup keys and reenter it on the next prompt"
 echo "It is required to unlock the disk first then we able to add the hash trust key"
 cd /encryptStorageTrustTool
