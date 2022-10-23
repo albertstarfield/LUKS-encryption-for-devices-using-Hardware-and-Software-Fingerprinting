@@ -8,9 +8,14 @@ echo "Please launch this Install shell using root privilege"
 exit
 fi
 set -e
-set -x
+set +x
 echo "[1/12]creating /encryptStorageTrustTool"
+if [ ! -d /encryptStorageTrustTool ]; then
 mkdir /encryptStorageTrustTool
+else
+echo "Updating preexisting Installation..."
+echo "ALERT, This will alter the Trust key"
+fi
 echo "[2/12] Installing component bypasstool"
 cp -a $(pwd)/bypasstool /encryptStorageTrustTool
 echo "[3/12] Installing component createLUKSVolume"
@@ -32,6 +37,8 @@ cp -a $(pwd)/bypasstool /encryptStorageTrustTool
 echo "[11/12] Installing component bypasstool"
 cp -a $(pwd)/bypasstool /encryptStorageTrustTool
 echo "[12/12] Registering and starting systemd daemons"
-systemctl enable --now /encryptStorageTrustTool/hwswhashd.service /encryptStorageTrustTool/luksAuth.service
+cp -rv /encryptStorageTrustTool/*.service /etc/systemd/system
+systemctl daemon-reload
+systemctl enable --now hwswhashd.service luksAuth.service
 echo "Done!"
 echo "If you have preexisting configuration, you need to renew the TrustHashKey for the disks"

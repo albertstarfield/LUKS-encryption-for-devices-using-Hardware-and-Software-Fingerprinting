@@ -19,12 +19,12 @@ blkid
 echo "======"
 echo -n "partition/Volume UUID to encrypt:" 
 set -e
-read -s diskUUID
+read diskUUID
 echo ""
 echo -n "What will you name the Volume? :"
-read -s sessionName
+read sessionName
 echo -n "What is the Volume mounting point on the system? :"
-read -s mountingpoint
+read mountingpoint
 if [ -z "${diskUUID}" ] && [ -z "${sessionName}" ] && [ -z "${mountingpoint}" ]; then
 echo "A blank required Input detected..."
 echo "Setup is cancelled"
