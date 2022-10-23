@@ -1,8 +1,14 @@
 #!/bin/bash
-#this is handler for LUKS rootfs
-disk1decrypt(){
+#this is handler for LUKS
+while [ ! -f /tmp/keyHash ]; do
+echo "Waiting for keyHash to be generated..."
+sleep 1
+done
+diskDecryptSequence(){
 cd /encryptStorageTrustTool
-. $(pwd)/diskConfig/disk0.conf
+#. $(pwd)/diskConfig/disk0.conf
+for config in $(ls $(pwd)/diskConfig); do
+. $(pwd)/diskConfig/${config}
 #mountingpoint=/home
 #diskUUID=74b757bf-e49a-4034-963e-75415714db84 #change this
 echo Calculating Trusted hardware + Software hash
@@ -12,21 +18,20 @@ mkdir ${mountingpoint}
 echo "mounting..."
 mount -o rw,lazytime,async,autodefrag,barrier,compress=zstd,datacow,datasum,flushoncommit,treelog /dev/mapper/${sessionName} ${mountingpoint}
 countwait=0
-while [ ! -f ${mountingpoint}/mounted.flag ]; do
+while [ -z "$(mount | grep /dev/mapper/${sessionName} | grep ${mountingpoint})" ]; do
 countwait=$(($countwait + 1))
 if [ $countwait -gt 30 ];then
-disk1decrypt
-#loop back if disk 1 failed
+diskDecryptSequence
 fi
 sleep 1
 done
-echo "disk1decryptor handler thread done!"
+echo "${config} configuration done!"
+done
 }
 
 
-echo 'launching disk1decrypt() to foreground'
-
-disk1decrypt # dont put it on the background to make sure this is the high priority one
+#=======================main==========================
+diskDecryptSequence # dont put it on the background to make sure this is the high priority one
 echo "done!"
 
 
