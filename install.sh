@@ -15,6 +15,9 @@ mkdir /encryptStorageTrustTool
 else
 echo "Updating preexisting Installation..."
 echo "ALERT, This will alter the Trust key"
+sleep 1
+echo "Disabling daemons from previous installation..."
+systemctl disable --now hwswhashd.service luksAuth.service
 fi
 echo "[2/12] Installing component bypasstool"
 cp -a $(pwd)/bypasstool /encryptStorageTrustTool
