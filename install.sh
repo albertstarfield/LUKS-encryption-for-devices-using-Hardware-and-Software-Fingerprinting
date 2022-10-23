@@ -35,10 +35,10 @@ echo "[8/12] Installing luksAuth systemd component"
 cp -a $(pwd)/luksAuth.service /encryptStorageTrustTool
 echo "[9/12] Installing component lukstrusteddecrypthandler"
 cp -a $(pwd)/lukstrusteddecrypthandler /encryptStorageTrustTool
-echo "[10/12] Installing component bypasstool"
-cp -a $(pwd)/bypasstool /encryptStorageTrustTool
-echo "[11/12] Installing component bypasstool"
-cp -a $(pwd)/bypasstool /encryptStorageTrustTool
+echo "[10/12] Installing component renewTrustHashKey"
+cp -a $(pwd)/renewTrustHashKey /encryptStorageTrustTool
+echo "[11/12] Installing legacy component submitkey"
+cp -a $(pwd)/submitkey /encryptStorageTrustTool
 echo "[12/12] Registering and starting systemd daemons"
 cp -rv /encryptStorageTrustTool/*.service /etc/systemd/system
 systemctl daemon-reload

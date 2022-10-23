@@ -7,7 +7,7 @@ keyHash="0000000000000000000000000000000"
 else
 hwHash="$(echo $(echo $(lsusb | sha512sum); echo $( lshw -c system | sha512sum ) ; echo $( lspci | sha512sum ) ; echo $( dmidecode -t system | sha512sum )) | sha512sum )"
 userspaceBinaryHash="$(echo $( sha512sum /bin/* ) | sha512sum)" #checking the integrity of crucial binary usually at /bin
-authToolsIntegrityHash="$(echo $(sha512sum /encryptStorageTrustTool/hwswhashd /encryptStorageTrustTool/renewTrustHashKey /encryptStorageTrustTool/submitkey /encryptStorageTrustTool/lukstrusteddecrypthandler.sh ; sha512sum $(pwd)/diskConfig ) | sha512sum )"
+authToolsIntegrityHash="$(echo $(sha512sum /encryptStorageTrustTool/hwswhashd /encryptStorageTrustTool/renewTrustHashKey /encryptStorageTrustTool/submitkey /encryptStorageTrustTool/lukstrusteddecrypthandler ; sha512sum $(pwd)/diskConfig ) | sha512sum )"
 bootloaderIntegrityHash="$(echo $(sha512sum $(find /boot/efi -type f)) | sha512sum)"
 osKernelIntegrityHash="$(echo $(sha512sum /boot/*initrd* ; sha512sum /boot/*vmlinuz* ) | sha512sum)"
 startupSystemDIntegrityHash="$(echo $(ls /etc/systemd/system | sha512sum) | sha512sum)"
