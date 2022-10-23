@@ -27,8 +27,8 @@ echo "[4/12] Installing component hwswhashd"
 cp -a $(pwd)/hwswhashd /encryptStorageTrustTool
 echo "[5/12] Installing hwswhashd systemd component"
 cp -a $(pwd)/hwswhashd.service /encryptStorageTrustTool
-echo "[6/12] Installing component improvementNotes.txt developer notes"
-cp -a $(pwd)/improvementNotes.txt /encryptStorageTrustTool
+echo "[6/12] Skipping  component improvementNotes.txt developer notes"
+#cp -a $(pwd)/improvementNotes.txt /encryptStorageTrustTool
 echo "[7/12] Installing component Install.sh for Portability"
 cp -a $(pwd)/install.sh /encryptStorageTrustTool
 echo "[8/12] Installing luksAuth systemd component"
