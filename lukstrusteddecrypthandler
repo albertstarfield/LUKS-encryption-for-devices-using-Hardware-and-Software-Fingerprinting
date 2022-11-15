@@ -17,7 +17,7 @@ cryptsetup luksOpen /dev/disk/by-uuid/${diskUUID} ${sessionName} --key-file=/tmp
 mkdir ${mountingpoint}
 echo "mounting..."
 #mount -o rw,lazytime,async,autodefrag,barrier,compress=zstd,datacow,datasum,flushoncommit,treelog /dev/mapper/${sessionName} ${mountingpoint}
-mount -o rw,async /dev/mapper/${sessionName} ${mountingpoint}
+mount -o rw,async,${mountingoption} /dev/mapper/${sessionName} ${mountingpoint}
 countwait=0
 while [ -z "$(mount | grep /dev/mapper/${sessionName} | grep ${mountingpoint})" ]; do
 countwait=$(($countwait + 1))
