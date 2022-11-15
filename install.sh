@@ -19,8 +19,8 @@ sleep 1
 echo "Disabling daemons from previous installation..."
 systemctl disable --now hwswhashd.service luksAuth.service
 fi
-echo "[2/12] Installing component bypasstool"
-cp -a $(pwd)/bypasstool /encryptStorageTrustTool
+echo "[2/12] skipping component bypasstool"
+#cp -a $(pwd)/bypasstool /encryptStorageTrustTool
 echo "[3/12] Installing component createLUKSVolume"
 cp -a $(pwd)/createLUKSVolume /encryptStorageTrustTool
 echo "[4/12] Installing component hwswhashd"
@@ -37,8 +37,8 @@ echo "[9/12] Installing component lukstrusteddecrypthandler"
 cp -a $(pwd)/lukstrusteddecrypthandler /encryptStorageTrustTool
 echo "[10/12] Installing component renewTrustHashKey"
 cp -a $(pwd)/renewTrustHashKey /encryptStorageTrustTool
-echo "[11/12] Installing legacy component submitkey"
-cp -a $(pwd)/submitkey /encryptStorageTrustTool
+echo "[11/12] skipping legacy component submitkey"
+#cp -a $(pwd)/submitkey /encryptStorageTrustTool
 echo "[12/12] Registering and starting systemd daemons"
 cp -rv /encryptStorageTrustTool/*.service /etc/systemd/system
 systemctl daemon-reload
