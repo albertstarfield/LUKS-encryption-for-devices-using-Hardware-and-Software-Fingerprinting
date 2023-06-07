@@ -5,7 +5,6 @@ This project aims to provide an additional layer of security for devices through
 - Utilization of hardware and software fingerprinting for additional authentication
 - Abstraction layer for the convenience of generating keyfile
 - Auto-unlockupon bootup
-- User-friendly interface for easy data decryption, encryption, and unlocking
 ## How to Get Started
 1. Git clone the repository
 2. chmod +x install.sh
