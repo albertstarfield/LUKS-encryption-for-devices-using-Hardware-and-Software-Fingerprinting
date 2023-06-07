@@ -13,4 +13,4 @@ This project aims to provide an additional layer of security for devices through
 ## Contact
 If you have any questions or need assistance, please do not hesitate to contact me at albertstarfield2001@gmail.com, masamudro2001@gmail.com, or masamudro2001@student.ub.ac.id.
 This project was intended for Low end SBC computer that doesnt have dedicated secure key storage then it was forwarded into academic undergraduate thesis purposes. Thank you for your interest in my project, and may it bring you great joy and enlightenment.
-- Albert Starfield (Wahyu Suryo Samudro), 2023
+- (Albert Starfield) Wahyu Suryo Samudro, 2023
